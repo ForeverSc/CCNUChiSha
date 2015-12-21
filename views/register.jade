@@ -1,0 +1,49 @@
+//
+   Created by 1122 on 2015/12/19.
+extends layout
+block content
+  body.o-page.p-contact
+    #page
+      #header
+        .header-content
+          a.p-link-home(href='/')
+            i.fa.fa-home
+          a.menu-btn(href='#menu')
+          a.p-link-back(href='javascript:history.back();')
+            i.fa.fa-arrow-left
+      .bannerPane(style='height:300px')
+        #map(style='width:100%; height:300px;')
+        .s-banner-content
+      // MAP
+      #content
+        h3.title
+          i.fa.fa-edit
+          |  &#x6CE8;&#x518C;
+        form(id="contact" class="contactForm"  method="post")
+          label
+            | &#x7528;&#x6237;&#x540D;
+            span.required *
+          input#ContactName(type='text', name='username')
+          label
+            | &#x8054;&#x7CFB;&#x7535;&#x8BDD;
+            span.required *
+          input#ContactTel(type='text', name='tel')
+          label
+            | 收货地址
+            span.required *
+          input#ContactAddress(type='text', name='address')
+          label
+            | &#x5BC6;&#x7801;
+            span.required *
+          input#password(type='password', name='password')
+          label
+            | &#x91CD;&#x590D;&#x8F93;&#x5165;&#x5BC6;&#x7801;
+            span.required *
+          input#password-repeat(type='password', name='password-repeat')
+          button(type="submit" class="o-buttons red") 注册
+          -if(success)
+            div.notifications.success
+              i.fa.fa-check-circle=success
+          -if(error)
+            div.notifications.error
+              i.fa.fa-exclamation-circle=error

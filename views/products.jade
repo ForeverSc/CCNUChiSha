@@ -1,0 +1,50 @@
+extends layout
+block content
+  body.o-page.p-blog
+    #page
+      #header
+        .header-content
+          a.p-link-home(href='/')
+            i.fa.fa-home
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          a.menu-btn(href='#menu')
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          a.p-link-back(href='javascript:history.back();')
+            i.fa.fa-arrow-left
+      | &#x9;&#x9;&#x9;
+      .bannerPane.banner-img3
+        .overlay
+        | &#x9;&#x9;&#x9;&#x9;
+        .s-banner-content
+          i.fa.fa-th-list
+          |  &#x7F51;&#x4E0A;&#x8BA2;&#x9910;
+      | &#x9;&#x9;&#x9;
+      #content
+      -for(var i in shops)
+        article
+          a(href='/order/'+shops[i].shopname)
+            .article-img-pane
+              img(src='img/gallery/4.jpg')
+            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+            h2=shops[i].shopname
+            h2 订餐电话 ： #{shops[i].shoptel}
+            h2 商铺地址 ： #{shops[i].shopaddress}
+            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+            .prod-pricePane
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          .a-meta
+            span
+              i.fa.fa-thumbs-up
+              |  10
+            |  &#x9;&#x9;
+            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+            .products-ratings
+              i.fa.fa-star
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              i.fa.fa-star
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              i.fa.fa-star
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              i.fa.fa-star-half-empty
+        | &#x9;&#x9;&#x9;&#x9;
+        | &#x9;&#x9;&#x9;&#x9;

@@ -1,0 +1,48 @@
+extends layout
+block content
+  body.o-page.p-about
+    #page
+      #header
+        .header-content
+          a.p-link-home(href='/')
+            i.fa.fa-home
+          a.menu-btn(href='#menu')
+          a.p-link-back(href='javascript:history.back();')
+            i.fa.fa-arrow-left
+      .bannerPane
+        .overlay
+        .s-banner-content
+          | &#x5546;&#x94FA;&#x7BA1;&#x7406;
+      h3.title
+        i.fa.fa-columns=title
+      -if(success)
+        div.notifications.success
+          i.fa.fa-check-circle=success
+      -if(error)
+        div.notifications.error
+          i.fa.fa-exclamation-circle=error
+      form(id="contact" class="contactForm"  method="post")
+        label
+          | 商铺名
+          span.required *
+        input#ContactName(type='text', name='shopname')
+        label
+          | 联系电话
+          span.required *
+        input#ContactTel(type='text', name='shoptel')
+        label
+          | 商铺地址
+          span.required *
+        input#ContactAddress(type='text', name='shopaddress')
+        button(type="submit" class="o-buttons red") 提交并保存店铺
+      h3.title
+        i.fa.fa-cutlery 订单
+      -for(var i in bills)
+        div.notifications.info
+          -for(var j in bills[i]['bill'])
+            div.mobile-two  #{j} : #{bills[i]['bill'][j]}
+          div.mobile-two 姓名:#{bills[i]['user']['name']}
+          div.mobile-two 地址:#{bills[i]['user']['address']}
+          div.mobile-two 联系电话:#{bills[i]['user']['tel']}
+      hr
+      .subFooter

@@ -1,0 +1,56 @@
+extends layout
+block content
+  body.o-page.p-about
+    #page
+      #header
+        .header-content
+          a.p-link-home(href='/')
+            i.fa.fa-home
+          a.menu-btn(href='#menu')
+          a.p-link-back(href='javascript:history.back();')
+            i.fa.fa-arrow-left
+      .bannerPane
+        .overlay
+        .s-banner-content
+          | &#x4E2A;&#x4EBA;&#x4FE1;&#x606F;&#x7BA1;&#x7406;
+      h3.title
+        i.fa.fa-columns=title
+      -if(success)
+        div.notifications.success
+          i.fa.fa-check-circle=success
+      -if(error)
+        div.notifications.error
+          i.fa.fa-exclamation-circle=error
+      form(id="contact" class="contactForm"  method="post")
+        label
+          | &#x7528;&#x6237;&#x540D;
+          span.required *
+        input#ContactName(type='text', name='username',value=user.name)
+        label
+          | &#x8054;&#x7CFB;&#x7535;&#x8BDD;
+          span.required *
+        input#ContactTel(type='text', name='tel',value=user.tel)
+        label
+          | 收货地址
+          span.required *
+        input#ContactAddress(type='text', name='address',value=user.address)
+        label
+          | &#x5BC6;&#x7801;
+          span.required *
+        input#password(type='password', name='password',value=user.password)
+        label
+          | &#x91CD;&#x590D;&#x8F93;&#x5165;&#x5BC6;&#x7801;
+          span.required *
+        input#password-repeat(type='password', name='password-repeat',value=user.password)
+        button(type="submit" class="o-buttons red") 保存修改
+      h3.title
+        i.fa.fa-cutlery 我的订单
+      -for(var i in bills)
+        div.notifications.info
+          div.mobile-two 商铺名：#{bills[i]['shop']['shopname']}
+          -for(var j in bills[i]['bill'])
+            div.mobile-two  #{j} : #{bills[i]['bill'][j]}
+          div.mobile-two 商铺电话：#{bills[i]['shop']['shoptel']}
+          div.mobile-two 商铺地址：#{bills[i]['shop']['shopaddress']}
+        hr
+      .subFooter

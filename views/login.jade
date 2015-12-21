@@ -1,0 +1,43 @@
+//
+   Created by 1122 on 2015/12/19.
+extends layout
+block content
+  body.o-page.p-contact
+    #page
+      #header
+        .header-content
+          a.p-link-home(href='/')
+            i.fa.fa-home
+          a.menu-btn(href='#menu')
+          a.p-link-back(href='javascript:history.back();')
+            i.fa.fa-arrow-left
+      .bannerPane(style='height:300px')
+        #map(style='width:100%; height:300px;')
+        .s-banner-content
+      // MAP
+      #content
+        h3.title
+          i.fa.fa-bookmark
+          |  &#x767B;&#x5F55;
+        form(id="contact" class="contactForm"  method="post")
+          label
+            | &#x7528;&#x6237;&#x540D;
+            span.required *
+          input#ContactName(type='text', name='username')
+          label
+            | &#x5BC6;&#x7801;
+            span.required *
+          input#password(type='password', name='password')
+          //button(type="submit" class="btn btn-primary") 登入
+          button(type="submit" class="o-buttons red") 登入
+          a(href='/register') &#x6CE8;&#x518C;&#x8D26;&#x53F7;
+          -if(success)
+            div.notifications.success
+              i.fa.fa-check-circle=success
+          -if(error)
+            div.notifications.error
+              i.fa.fa-exclamation-circle=error
+        h3.title
+          i.fa.fa-map-marker
+          |  &#x5B9A;&#x4F4D;
+        p &#x534E;&#x4E2D;&#x5E08;&#x8303;&#x5927;&#x5B66;

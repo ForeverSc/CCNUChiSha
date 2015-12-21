@@ -1,0 +1,58 @@
+extends layout
+block content
+  body.o-page.p-contact
+    #page
+      #header
+        .header-content
+          a.p-link-home(href='/')
+            i.fa.fa-home
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          a.menu-btn(href='#menu')
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          a.p-link-back(href='javascript:history.back();')
+            i.fa.fa-arrow-left
+      | &#x9;&#x9;&#x9;
+      .bannerPane(style='height:300px')
+        #map(style='width:100%; height:300px;')
+        | &#x9;&#x9;&#x9;&#x9;
+        .s-banner-content
+      // MAP
+      #content
+        h3.title
+          i.fa.fa-envelope
+          |  &#x8054;&#x7CFB;&#x6211;&#x4EEC;
+        | &#x9;&#x9;&#x9;&#x9;
+        | &#x9;&#x9;&#x9;&#x9;
+        form#contact.contactForm
+          label
+            | &#x59D3;&#x540D;
+            span.required *
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          input#ContactName(type='text', name='name')
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          label
+            | &#x90AE;&#x7BB1;
+            span.required *
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          input#ContactEmail(type='email', name='mail')
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          label
+            | &#x8054;&#x7CFB;&#x7535;&#x8BDD;
+            span.required *
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          textarea#ContactMessage(name='comment')
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          input#SubmitContact.btn-normal(type='submit', value='发送')
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          #msg.notifications(style='display:none')
+        | &#x9;&#x9;&#x9;&#x9;
+        h3.title
+          i.fa.fa-map-marker
+          |  &#x5B9A;&#x4F4D;
+        | &#x9;&#x9;&#x9;&#x9;
+        p &#x534E;&#x4E2D;&#x5E08;&#x8303;&#x5927;&#x5B66;
+

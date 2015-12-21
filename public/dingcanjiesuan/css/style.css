@@ -1,0 +1,12 @@
+/* CSS Document */
+body,div,ol,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,p,form,fieldset,legend,input,button{ margin:0; padding:0;}
+html {  width: 100%; font-family: 'Heiti SC', 'Microsoft YaHei'; font-size: 100px; outline: 0; -webkit-text-size-adjust:none;}
+body {  width:100%; margin: 0; -webkit-user-select: none; position: relative; background-color:#fff;}
+a:hover,a:link,a:visited,a{ color:inherit; text-decoration:none;}
+ul,li{list-style:none}
+footer{ position:fixed; bottom:0; width:4rem; height:0.45rem; line-height:0.45rem; background-color:#ECECEC;}
+footer .ft-lt{ float:left; width:2.749rem; height:0.45rem;}
+footer .ft-lt p{ float:left; margin-left:0.15rem; font-size:0.18rem;}
+footer .ft-rt{ float:left; width:1.25rem; height:0.45rem; background-color:#39B867;}
+footer .ft-rt p{ font-size:0.2rem; color:#fff; text-align:center;}
+.jq{ width:3rem; height:0.8rem;}

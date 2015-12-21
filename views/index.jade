@@ -1,0 +1,36 @@
+extends layout
+block content
+  body.o-page.p-home
+    #page
+      // Header
+      #header
+        .header-content
+          a.menu-btn(href='#menu')
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          a.p-link-back(href='javascript:history.back();')
+            i.fa.fa-arrow-left
+      // Content
+      #content
+        .fluid_container
+          #camera_wrap_4.camera_wrap.camera_black_skin.camera_emboss.pattern_1
+            div(data-thumb='img/gallery/1-th.jpg', data-src='img/gallery/1.jpg')
+              .bannerContent.fadeFromBottom
+                .b-c-textpane
+                  h1 Hey.
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  p &#x6B22;&#x8FCE;&#x6765;&#x5230;&#x534E;&#x5E08;&#x5403;&#x5565;
+            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+            div(data-thumb='img/gallery/2-th.jpg', data-src='img/gallery/2.jpg')
+              .bannerContent.fadeFromBottom
+                .b-c-textpane
+                  h1 &#x7F8E;&#x98DF;&#x70ED;&#x641C;
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  p
+            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+            div(data-thumb='img/gallery/3-th.jpg', data-src='img/gallery/3.jpg')
+              .bannerContent.fadeFromBottom
+                .b-c-textpane
+                  h1 &#x7CBE;&#x54C1;&#x7F8E;&#x98DF;
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  p
+
