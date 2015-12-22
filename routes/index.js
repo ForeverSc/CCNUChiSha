@@ -5,6 +5,7 @@ var User=require('../models/user.js');
 var Post=require('../models/post.js');
 var Bills=require('../models/bills.js');
 var Shops=require('../models/shops.js');
+var Menu=require('../models/menu.js');
 
 
 /* GET home page. */
@@ -31,7 +32,6 @@ router.get("/customer", function(req,res){
     if(err){
       bills=[];
     }
-    console.log(bills);
     res.render("customer",{
       title: "个人信息",
       user:req.session.user,
@@ -48,22 +48,27 @@ router.get("/shops",function(req,res){
 
   Shops.getByShopManager(req.session.user,function(err,shop){
     if(!shop){
-      shop=[];
-      return res.redirect("/");
+      res.render("shops",{
+        title:"商铺信息"
+      });
+    }else{
+      Menu.getByManager(req.session.user,function(err,menu){
+        Bills.getByShopName(shop.shopname,function(err,bills){
+          if(err){
+            bills=[];
+            return res.redirect("/");
+          }
+          res.render("shops",{
+            title:"商铺信息",
+            bills:bills,
+            menu:menu
+          });
+        });
+
+      });
     }
 
 
-    Bills.getByShopName(shop.shopname,function(err,bills){
-      if(err){
-        bills=[];
-       return res.redirect("/");
-      }
-
-      res.render("shops",{
-        title:"商铺信息",
-        bills:bills
-      });
-    });
 
   });
 
@@ -83,6 +88,22 @@ router.post("/shops",function(req,res){
 
 });
 
+//修改菜单
+router.post("/shops/commitmenu",checkLogin);
+router.post("/shops/commitmenu",function(req,res){
+  Shops.getByShopManager(req.session.user,function(err,shop){
+    var newmenu=new Menu(req.session.user,req.body,shop);
+    newmenu.save(function(err){
+      if(err){
+        res.send({status:'error'});
+      }else {
+        res.send({status: 'success'});
+      }
+    });
+  });
+});
+
+
 
 
 //所有商铺界面
@@ -92,14 +113,10 @@ Shops.getAll(function(err,shops){
     shops=[];
     res.redirect("/");
   }
-
-
   res.render("products",{
     title:"在线订餐",
     shops:shops
   });
-
-
 });
 });
 
@@ -108,14 +125,23 @@ router.get("/order/:shop",function(req,res){
 
   Shops.getByShopName(req.params.shop,function(err,shop){
     if(!shop){
-      res.redirect("/products");
+      res.redirect("/");
     }
-    //TODO：显示不同菜品
-    res.render("order",{
-      title:req.params.shop,
-      shopname:req.params.shop
-    })
-  });
+      //TODO：显示不同菜品
+      Menu.getByManager(shop.shopmanager,function(err,menu){
+        if(!menu){
+          menu=[];
+        }
+          res.render("order",{
+            title:req.params.shop,
+            shopname:req.params.shop,
+            menu:menu
+          });
+
+      });
+
+
+    });
 
 });
 

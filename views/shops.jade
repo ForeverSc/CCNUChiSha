@@ -36,13 +36,64 @@ block content
         input#ContactAddress(type='text', name='shopaddress')
         button(type="submit" class="o-buttons red") 提交并保存店铺
       h3.title
+        i.fa.fa-cutlery 菜单修改
+          .col-md-6
+            table.table.table-bordered
+              thead
+                tr
+                  th &#x83DC;&#x540D;
+                  th &#x4EF7;&#x683C;
+                  th &#x64CD;&#x4F5C;
+              tbody
+                -if(menu)
+                  -for(var name in menu["menu"])
+                    tr
+                      td
+                        input(type="text" class="name" value=name )
+                      td
+                        input(type="text" class="price" value=menu["menu"][name] )
+                      td
+                        input(type="submit" class="o-buttons red" value="删除")
+            .col-md-6
+              input.o-buttons.red(type='submit', value='增加', onclick='addcolumn()')
+              input.o-buttons.red(type='submit', value='提交', onclick='commit()')
+      h3.title
         i.fa.fa-cutlery 订单
-      -for(var i in bills)
-        div.notifications.info
-          -for(var j in bills[i]['bill'])
-            div.mobile-two  #{j} : #{bills[i]['bill'][j]}
-          div.mobile-two 姓名:#{bills[i]['user']['name']}
-          div.mobile-two 地址:#{bills[i]['user']['address']}
-          div.mobile-two 联系电话:#{bills[i]['user']['tel']}
-      hr
+        -if(bills)
+          -for(var i in bills)
+            div.panel.panel-success
+              div.panel-body
+                -for(var j in bills[i]['bill'])
+                  div.mobile-two  #{j} : #{bills[i]['bill'][j]} ￥
+                div.mobile-two 姓名:#{bills[i]['user']['name']}
+                div.mobile-two 地址:#{bills[i]['user']['address']}
+                div.mobile-two 联系电话:#{bills[i]['user']['tel']}
+            hr
       .subFooter
+    script.
+      function addcolumn() {
+        var add = "<tr><td><input type=\"text\" class=\"name\"></td><td><input type=\"text\" class=\"price\"></td> <td><input type=\"submit\" class=\"o-buttons red\" value=\"删除\" ></td></tr>";
+        $("table[class='table table-bordered']").find("tbody").append(add);
+      }
+      $("tbody").on('click', "input[value='删除']", function () {
+        $(this).parent().parent().remove();
+      });
+      function commit() {
+        var menu = {};
+        $(".col-md-6").find("tbody").find("tr").each(function () {
+          var name = $(this).find("input[class='name']").val();
+          var price = $(this).find("input[class='price']").val();
+          if (name != null && price != null) {
+            menu[name] = price;
+          }
+        });
+        console.log(menu);
+        var commitmenu = JSON.parse(JSON.stringify(menu));
+        $.post("/shops/commitmenu", commitmenu, function (data) {
+          if (data.status == "success") {
+            alert("提交成功");
+          } else {
+            alert("服务器出了点问题...");
+          }
+        });
+      }
